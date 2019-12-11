@@ -5,7 +5,7 @@ if(process.env.MONGOLAB_URI){
     useNewUrlParser: true,
     useUnifiedTopology: true,
   }).then(() => console.log(`MongoDB Connected sucessfully`))
-    .catch(error => console.error(error));
+    .catch(error => console.error(error))
 }
 export interface IOrder extends Document {
   products: [string],

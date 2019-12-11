@@ -4,12 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "npm run build-ts && npm run lint",
     "build-ts": "tsc",
     "dev": "npm run build-ts && npm run serve",
     "serve": "node dist/server.js",
-    "start": "npm run dev",
-    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix"
+    "start": "npm run dev"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
