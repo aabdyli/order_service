@@ -7,7 +7,7 @@ import * as EmailValidator from 'email-validator'
 
 dotenv.config()
 
-import Order from './models/Order'
+import Order, { IOrder } from './models/Order'
 
 const queue = process.env.QUEUE_ENDPOINT || ''
 const region = process.env.QUEUE_REGION || ''
@@ -71,7 +71,7 @@ app.post('/orders', (req, res) => {
   createdOrder.orderId = createdOrder['_id']
 
   createdOrder.save()
-    .then((order) => {
+    .then((order: IOrder) => {
       if (order.orderId !== undefined)
         producer.send(order.orderId, (err) => {
           if (err) console.error(err)
@@ -82,7 +82,7 @@ app.post('/orders', (req, res) => {
         message: `Order ${order.id} created successfully`
       })
     })
-    .catch(error => console.error(error))
+    .catch((error: any) => console.error(error))
 })
 
 const port = process.env.PORT || 3000
