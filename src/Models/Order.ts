@@ -1,7 +1,7 @@
-import mongoose, {Schema, Document} from 'mongoose'
+import mongoose, { Schema, Document } from 'mongoose'
 
-if(process.env.MONGOLAB_URI){
-  mongoose.connect(process.env.MONGOLAB_URI,{
+if (process.env.MONGOLAB_URI) {
+  mongoose.connect(process.env.MONGOLAB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   }).then(() => console.log(`MongoDB Connected sucessfully`))
@@ -16,11 +16,11 @@ export interface IOrder extends Document {
 }
 
 const OrderSchema = new Schema({
-  products: {type: [String], required: true},
-  userId: {type: String, required: true},
-  userEmail: {type: String, required: true},
-  address: {type: String, required: true},
-  orderId: {type: String}
+  products: { type: [String], required: true },
+  userId: { type: String, required: true },
+  userEmail: { type: String, required: true },
+  address: { type: String, required: true },
+  orderId: { type: String }
 })
 
 const Order = mongoose.model<IOrder>('Order', OrderSchema)

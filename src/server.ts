@@ -29,35 +29,35 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 
 app.get('/', (_, res) => {
-  res.json({foo: 'bar'})
+  res.json({ foo: 'bar' })
 })
 
 
 // Validate the data
-app.post('/orders',(req, res, next) => {
-  const {products, userId, userEmail, address} = req.body
-  if(!Array.isArray(products)) {
-    res.json({type: 'Error', message: 'You should provide an array of products'})
+app.post('/orders', (req, res, next) => {
+  const { products, userId, userEmail, address } = req.body
+  if (!Array.isArray(products)) {
+    res.json({ type: 'Error', message: 'You should provide an array of products' })
     return
   }
 
-  if(products.length == 0) {
-    res.json({type: 'Error', message: 'There are no items in your basket'})
+  if (products.length == 0) {
+    res.json({ type: 'Error', message: 'There are no items in your basket' })
     return
   }
 
-  if(userId === '') {
-    res.json({type: 'Error', message: 'Your request does not have any User ID provided'})
+  if (userId === '') {
+    res.json({ type: 'Error', message: 'Your request does not have any User ID provided' })
     return
   }
 
-  if(!EmailValidator.validate(userEmail)) {
-    res.json({type: 'Error', message: 'The provided email is not valid'})
+  if (!EmailValidator.validate(userEmail)) {
+    res.json({ type: 'Error', message: 'The provided email is not valid' })
     return
   }
 
-  if(address == '') {
-    res.json({type: 'Error', message: 'Please provide a valid address'})
+  if (address == '') {
+    res.json({ type: 'Error', message: 'Please provide a valid address' })
     return
   }
 
@@ -72,9 +72,9 @@ app.post('/orders', (req, res) => {
 
   createdOrder.save()
     .then((order) => {
-      if(order.orderId !== undefined)
+      if (order.orderId !== undefined)
         producer.send(order.orderId, (err) => {
-          if(err) console.error(err)
+          if (err) console.error(err)
         })
 
       res.json({
@@ -87,6 +87,6 @@ app.post('/orders', (req, res) => {
 
 const port = process.env.PORT || 3000
 
-app.listen(port ,() => {
+app.listen(port, () => {
   console.log(`App is listening on http://localhost:${port}`)
 })
