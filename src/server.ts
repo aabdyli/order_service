@@ -7,7 +7,7 @@ import * as EmailValidator from 'email-validator'
 
 dotenv.config()
 
-import Order, { IOrder } from './models/Order'
+import Order, { IOrder } from './Models/Order'
 
 const queue = process.env.QUEUE_ENDPOINT || ''
 const region = process.env.QUEUE_REGION || ''
