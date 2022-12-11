@@ -14,7 +14,7 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "email-validator": "^2.0.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongodb": "^3.4.0",
     "mongoose": "^5.8.0",
     "sqs-producer": "^1.6.3",
